@@ -11,7 +11,21 @@ class App extends Component {
     }
   }
 
-  handleButtonClick = () => this.setState({ clicked: this.state.clicked+=1 })
+  handleButtonClick = () => {
+    const clicked = this.state.clicked;
+    this.setState({ clicked: clicked+1 })
+    console.log('handleButtonClick called',{clicked})
+  }
+
+  notAnArrowFunction() {
+    console.log('looks normal, but unfortunately "this" does not get set.')
+    console.log({this: this})
+  }
+
+  isAnArrowFunction = () => {
+    console.log('looks weird, with a better intro it will make more sense. Basically some magic happens so that "this" now gets set to be our App object, which has the setState() method on it.')
+    console.log({this: this})
+  }
 
   render() {
     return (
@@ -31,6 +45,10 @@ class App extends Component {
           </a>
           <button onClick={this.handleButtonClick}>click me</button>
           <div>yeah it's been clicked like {this.state.clicked} times now</div>
+          <div style={{color: 'gray'}}>
+          <button onClick={this.notAnArrowFunction}>notAnArrowFunction()</button>
+          <button onClick={this.isAnArrowFunction}>isAnArrowFunction()</button>
+        </div>
         </header>
       </div>
     );
