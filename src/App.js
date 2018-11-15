@@ -3,6 +3,16 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      clicked: 0
+    }
+  }
+
+  handleButtonClick = () => this.setState({ clicked: this.state.clicked+=1 })
+
   render() {
     return (
       <div className="App">
@@ -19,6 +29,8 @@ class App extends Component {
           >
             Learn React
           </a>
+          <button onClick={this.handleButtonClick}>click me</button>
+          <div>yeah it's been clicked like {this.state.clicked} times now</div>
         </header>
       </div>
     );
